@@ -32,9 +32,11 @@ export default function QRCodeGenerator() {
         placeholder="Insira o texto"
         value={text}
         onChange={handleTextChange}
-        className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300 mb-8 p-2 border border-gray-300 rounded"
+        className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
+         hover:bg-white duration-300 mb-8 p-2 border border-gray-300 rounded"
       />
-      <button onClick={generateQRCode} className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 p-2 bg-blue-500 text-white rounded">
+      <button onClick={generateQRCode} className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 
+      hover:bg-indigo-500 duration-300 p-2 bg-blue-500 text-white rounded">
         Gerar QR Code
       </button>
 
@@ -48,7 +50,8 @@ export default function QRCodeGenerator() {
             <h2 className='text-4xl font-bold'>QRCode</h2>
             <QRCode value={text} />
             <div className='flex justify-center'>
-              <button onClick={closeModal} className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 mt-4 p-2 bg-blue-500 text-white rounded">
+              <button onClick={closeModal} className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
+               hover:bg-indigo-500 duration-300 mt-4 p-2 bg-blue-500 text-white rounded">
                 Fechar
               </button>
             </div>
