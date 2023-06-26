@@ -1,17 +1,30 @@
 import React, { useState, useRef } from 'react';
 import QRCode from 'qrcode.react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export default function QRCodeGenerator() {
   const [text, setText] = useState('');
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
+  const MySwal = withReactContent(Swal)
+
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
 
   const generateQRCode = () => {
-    setShowModal(true);
+    if (text) {
+      MySwal.fire({
+        title: 'QR Code',
+        html: (<div className="text-center"><QRCode className='mx-auto' value="${text}" /></div>),
+        confirmButtonText: 'Fechar',
+        confirmButtonColor: '#3B82F6'
+      });
+    } else {
+      MySwal.fire('Erro', 'Digite um texto válido', 'error');
+    }
   };
 
   const closeModal = () => {
@@ -39,26 +52,6 @@ export default function QRCodeGenerator() {
       hover:bg-indigo-500 duration-300 p-2 bg-blue-500 text-white rounded">
         Gerar QR Code
       </button>
-
-      {showModal && (
-        <div
-          ref={modalRef}
-          onClick={handleModalClick}
-          className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gray-500 bg-opacity-50"
-        >
-          <div className="flex flex-col justify-around items-center bg-white p-4 rounded w-96 h-96">
-            <h2 className='text-4xl font-bold'>QRCode</h2>
-            <QRCode value={text} />
-            <div className='flex justify-center'>
-              <button onClick={closeModal} className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
-               hover:bg-indigo-500 duration-300 mt-4 p-2 bg-blue-500 text-white rounded">
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
     </div>
   );
 }
